@@ -1,0 +1,17 @@
+api_addr = "http://{{vault_api_addr}}:8200"
+custer_addr = "http://{{vault_api_addr}}:8201"
+ui = true
+storage "dynamodb" {
+  ha_enabled = "true"
+  region     = "eu-west-2"
+  table      = "vault-data"
+}
+
+listener "tcp" {
+  address = "0.0.0.0:8200"
+  tls_disable = true
+}
+
+seal "awskms" {
+    kms_key_id = "68e41402-4795-4764-8809-816595c07e0f"
+}

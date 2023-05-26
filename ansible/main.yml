@@ -1,0 +1,11 @@
+---
+
+- name: setupIP
+  hosts: all
+  vars_prompt:
+    - name: ansible_password
+      prompt: what is the password?
+      private: true
+  become: true
+  roles:
+    - vault

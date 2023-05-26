@@ -1,0 +1,58 @@
+---
+
+  - name: ensure package is insatlled
+    ansible.builtin.package:
+      name: "{{item}}"
+    with_items:
+      - unzip
+      - awscli
+
+  - name: ensure group exsists
+    ansible.builtin.group:
+      name: vault
+      state: present
+
+  - name: ensure user exsists
+    ansible.builtin.user:
+      name: vault
+      group: vault
+
+
+  - name: download vault
+    ansible.builtin.get_url:
+      url: https://releases.hashicorp.com/vault/{{vault_version}}/vault_{{vault_version}}_linux_arm.zip
+      dest: /tmp/vault_{{vault_version}}.zip
+
+  - name: unzip vault
+    ansible.builtin.unarchive:
+      src:  /tmp/vault_{{vault_version}}.zip
+      dest: /usr/local/bin
+      remote_src: true
+
+  - name: ensure config dir
+    ansible.builtin.file:
+      path: /etc/vault.d
+      state: directory
+      owner: vault
+      group: vault
+      mode: 0744
+
+  - name: vault config.hcl
+    ansible.builtin.template:
+      src: ./config.hcl.j2
+      dest: /etc/vault.d/config.hcl
+      owner: vault
+      group: vault
+      mode: 0744
+
+  - name: vault.service
+    ansible.builtin.copy:
+      src: vault.service
+      dest: /etc/systemd/system/vault.service
+
+  - name: enable service
+    ansible.builtin.systemd:
+      name: vault
+      state: started
+      enabled: true
+      daemon_reload: true
