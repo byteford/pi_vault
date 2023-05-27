@@ -21,10 +21,10 @@ resource "vault_identity_oidc_provider" "aws" {
   https_enabled = false
   issuer_host = "127.0.0.1:8200"
   allowed_client_ids = [
-    vault_identity_oidc_client.tawsest.client_id
+    vault_identity_oidc_client.aws.client_id
   ]
   scopes_supported = [
-    vault_identity_oidc_scope.aws.name
+    vault_identity_oidc_scope.user.name
   ]
 }
 
