@@ -8,13 +8,6 @@ resource "vault_identity_oidc_key" "aws" {
   rotation_period    = 3600
   verification_ttl   = 3600
 }
-resource "vault_identity_oidc_scope" "user" {
-  name        = "user"
-  template    = jsonencode({
-    username = "{{identity.entity.name}}"
-    })
-  description = "Vault OIDC Groups Scope"
-}
 
 resource "vault_identity_oidc_provider" "aws" {
   name = "aws"
@@ -24,13 +17,13 @@ resource "vault_identity_oidc_provider" "aws" {
     vault_identity_oidc_client.aws.client_id
   ]
   scopes_supported = [
-    vault_identity_oidc_scope.user.name
   ]
 }
 
 resource "vault_identity_oidc_client" "aws" {
   name          = "application"
   key           = vault_identity_oidc_key.aws.name
+  type          = "public"
   redirect_uris = [
     "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
     "http://127.0.0.1:8251/callback",
