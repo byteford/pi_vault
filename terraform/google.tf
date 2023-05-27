@@ -8,6 +8,9 @@ resource "vault_jwt_auth_backend" "google" {
     default_role        = "default"
     tune {
         listing_visibility = "unauth"
+        token_type = "default-service"
+        max_lease_ttl ="768h"
+        default_lease_ttl ="768h"
     }
 }
 

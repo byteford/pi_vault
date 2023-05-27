@@ -3,6 +3,13 @@ resource "vault_identity_oidc_assignment" "aws" {
   group_ids  = [var.aws_Group_id]
 }
 
+resource "vault_identity_oidc_scope" "scope" {
+  name        = "groups"
+  template    = "{\"groups\":{{identity.entity.groups.names},\"username\":{{identity.entity.name}}}}"
+  description = "Vault OIDC Groups Scope"
+}
+
+
 resource "vault_identity_oidc_client" "aws" {
   name          = "application"
   client_type   = "public"
@@ -16,4 +23,13 @@ resource "vault_identity_oidc_client" "aws" {
   ]
   id_token_ttl     = 2400
   access_token_ttl = 7200
+}
+
+resource "vault_identity_oidc_provider" "aws" {
+  name = "aws"
+  https_enabled = false
+  allowed_client_ids = ["*"]
+  scopes_supported = [
+    vault_identity_oidc_scope.scope.name
+  ]
 }
