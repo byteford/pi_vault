@@ -23,7 +23,7 @@ resource "vault_jwt_auth_backend_role" "google" {
   backend         = vault_jwt_auth_backend.google.path
   role_name       = "default"
   token_policies  = ["default"]
-
+  oidc_scopes =  ["profile","email"]
   user_claim            = "email"
   role_type             = "oidc"
   allowed_redirect_uris = ["https://${var.vault_url}:8200/ui/vault/auth/google/oidc/callback","http://localhost:8250/google/callback"]
