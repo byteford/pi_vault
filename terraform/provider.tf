@@ -1,5 +1,5 @@
 provider "vault" {
-    address = var.url
+    address = var.vault_url
 }
 
 provider "aws" {
