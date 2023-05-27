@@ -9,9 +9,6 @@ resource "vault_jwt_auth_backend" "google" {
     oidc_discovery_url  = "https://accounts.google.com"
     oidc_client_id      = var.google_client_id
     oidc_client_secret  = var.google_secret
-    provider_config = {
-      fetch_user_info = true
-    }
 }
 
 module "James" {
