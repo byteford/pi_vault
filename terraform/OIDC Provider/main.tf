@@ -11,8 +11,8 @@ resource "vault_identity_oidc_key" "aws" {
 
 resource "vault_identity_oidc_provider" "aws" {
   name = "aws"
-  https_enabled = false
-  issuer_host = "127.0.0.1:8200"
+  https_enabled = true
+  issuer_host = "vault.devcastops.com/:8200"
   allowed_client_ids = [
     vault_identity_oidc_client.aws.client_id
   ]
@@ -23,7 +23,7 @@ resource "vault_identity_oidc_provider" "aws" {
 resource "vault_identity_oidc_client" "aws" {
   name          = "application"
   key           = vault_identity_oidc_key.aws.name
-  type          = "public"
+  client_type   = "public"
   redirect_uris = [
     "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
     "http://127.0.0.1:8251/callback",
