@@ -7,8 +7,10 @@ resource "vault_github_auth_backend" "blinkbyte" {
 module "James" {
     source = "./users"
     vault_github_auth_backend = vault_github_auth_backend.blinkbyte
+    google_auth_backend = vault_jwt_auth_backend.google
     github_username = "byteford"
     users_name = "James Sandford"
+    google_email = "James.sandford@blinkbyte.co.uk"
 }
 
 module "Wale" {

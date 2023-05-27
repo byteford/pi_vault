@@ -14,3 +14,10 @@ resource "vault_identity_entity_alias" "user" {
   mount_accessor  = var.vault_github_auth_backend.accessor
   canonical_id    = vault_identity_entity.user.id
 }
+
+resource "vault_identity_entity_alias" "user" {
+  count = var.google_email == "" ? 1:0
+  name            = "${var.google_email}"
+  mount_accessor  = var.google_auth_backend.accessor
+  canonical_id    = vault_identity_entity.user.id
+}

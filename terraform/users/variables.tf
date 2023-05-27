@@ -9,3 +9,13 @@ variable "github_username" {
 variable "users_name" {
   description = "The name of the user"
 }
+
+variable "google_email" {
+  description = "The users, google email address"
+  default = ""
+}
+
+variable "google_auth_backend" {
+  description = "The google auth backend object"
+  default = {}
+}
