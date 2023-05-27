@@ -13,7 +13,7 @@ resource "vault_jwt_auth_backend_role" "google" {
   role_name       = "default"
   token_policies  = ["default"]
 
-  user_claim            = "sub"
+  user_claim            = "email"
   role_type             = "oidc"
   allowed_redirect_uris = ["https://${var.vault_url}:8200/ui/vault/auth/google/oidc/callback","http://localhost:8250/google/callback"]
 }
