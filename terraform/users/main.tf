@@ -16,7 +16,7 @@ resource "vault_identity_entity_alias" "user" {
 }
 
 resource "vault_identity_entity_alias" "google_user" {
-  count = var.google_email == "" ? 1:0
+  count = var.google_email == "" ? 0:1
   name            = "${var.google_email}"
   mount_accessor  = var.google_auth_backend.accessor
   canonical_id    = vault_identity_entity.user.id
