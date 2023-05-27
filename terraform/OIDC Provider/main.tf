@@ -12,7 +12,7 @@ resource "vault_identity_oidc_key" "aws" {
 resource "vault_identity_oidc_provider" "aws" {
   name = "aws"
   https_enabled = true
-  issuer_host = "vault.devcastops.com/:8200"
+  issuer_host = "https://vault.devcastops.com:8200"
   allowed_client_ids = [
     vault_identity_oidc_client.aws.client_id
   ]
