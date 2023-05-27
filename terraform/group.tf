@@ -6,7 +6,7 @@ resource "vault_identity_group" "Admin" {
   metadata = {
     version = "2"
   }
-  member_entity_ids = []
+  member_entity_ids = [module.James.entity_id]
 }
 
 resource "vault_identity_group" "read_only" {
