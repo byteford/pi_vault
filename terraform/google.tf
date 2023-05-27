@@ -9,14 +9,14 @@ resource "vault_jwt_auth_backend" "google" {
     tune {
         listing_visibility = "unauth"
     }
-    provider_config = {
-        provider = "gsuite"
-        gsuite_service_account = var.gsuite_service_account
-        gsuite_admin_impersonate = var.gsuite_admin_impersonate
-        fetch_groups = true
-        fetch_user_info = true
-        groups_recurse_max_depth = 1
-    }
+    # provider_config = {
+    #     provider = "gsuite"
+    #     gsuite_service_account = var.gsuite_service_account
+    #     gsuite_admin_impersonate = var.gsuite_admin_impersonate
+    #     fetch_groups = true
+    #     fetch_user_info = true
+    #     groups_recurse_max_depth = 1
+    # }
 }
 
 resource "vault_jwt_auth_backend_role" "google" {
