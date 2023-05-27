@@ -7,15 +7,6 @@
       - unzip
       - awscli
 
-  - name: ensure group exsists
-    ansible.builtin.group:
-      name: vault
-      state: present
-
-  - name: ensure user exsists
-    ansible.builtin.user:
-      name: vault
-      group: vault
 
 
   - name: download vault
@@ -53,6 +44,6 @@
   - name: enable service
     ansible.builtin.systemd:
       name: vault
-      state: started
+      state: restarted
       enabled: true
       daemon_reload: true

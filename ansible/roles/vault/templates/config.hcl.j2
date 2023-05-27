@@ -1,5 +1,5 @@
-api_addr = "http://{{vault_api_addr}}:8200"
-custer_addr = "http://{{vault_api_addr}}:8201"
+api_addr = "https://{{vault_api_addr}}:8200"
+custer_addr = "https://{{vault_api_addr}}:8201"
 ui = true
 storage "dynamodb" {
   ha_enabled = "true"
@@ -9,7 +9,8 @@ storage "dynamodb" {
 
 listener "tcp" {
   address = "0.0.0.0:8200"
-  tls_disable = true
+  tls_cert_file = "/etc/letsencrypt/live/{{ vault_api_addr }}/cert.pem"
+  tls_key_file =  "/etc/letsencrypt/live/{{ vault_api_addr }}/privkey.pem"
 }
 
 seal "awskms" {

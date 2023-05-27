@@ -8,4 +8,6 @@
       private: true
   become: true
   roles:
+    - make_users
+    - tls
     - vault

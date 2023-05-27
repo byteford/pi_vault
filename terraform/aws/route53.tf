@@ -4,12 +4,14 @@ locals {
   parent_domain = join(".", slice(local.site_domain_name_parts, 1, length(local.site_domain_name_parts)))
 
 }
+
 data "aws_route53_zone" "zone" {
   name         = local.parent_domain
 }
-resource "aws_route53_record" "cname" {
+
+resource "aws_route53_record" "a_record" {
   zone_id = data.aws_route53_zone.zone.zone_id
-  name    = var.url #vault.something.com
+  name    = var.url
   type    = "A"
   ttl     = 300
   records = [var.ip] 
