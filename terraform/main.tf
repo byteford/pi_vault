@@ -16,8 +16,10 @@ module "James" {
 module "Wale" {
     source = "./users"
     vault_github_auth_backend = vault_github_auth_backend.blinkbyte
+    google_auth_backend = vault_jwt_auth_backend.google
     github_username = "sirlegendary"
     users_name = "Wale Salami"
+    google_email = "salamiwale@gmail.com"
 }
 
 module "policies" {
