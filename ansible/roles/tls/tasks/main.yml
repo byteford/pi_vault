@@ -56,7 +56,7 @@
       hour: "14"
 
   - name: 'Get certificate'
-    command: 'certbot -n --nginx certonly -d {{ vault_api_addr }}'
+    command: 'certbot certonly --non-interactive --standalone  --agree-tos  --preferred-chain "ISRG Root X1" -d {{ vault_api_addr }}'
     args:
       creates: '/etc/letsencrypt/live/{{ vault_api_addr }}'
 
