@@ -20,3 +20,8 @@ variable "gsuite_service_account" {
   type = string
   description = "service_account json"
 }
+
+variable "gsuite_admin_impersonate" {
+  type = string
+  description = "email of a gsuite admin"
+}

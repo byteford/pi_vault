@@ -12,6 +12,7 @@ resource "vault_jwt_auth_backend" "google" {
     provider_config = {
         provider = "gsuite"
         gsuite_service_account = var.gsuite_service_account
+        gsuite_admin_impersonate = var.gsuite_admin_impersonate
         fetch_groups = true
         fetch_user_info = true
         groups_recurse_max_depth = 1
