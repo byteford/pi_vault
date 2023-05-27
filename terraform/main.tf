@@ -19,3 +19,9 @@ module "Wale" {
 module "policies" {
     source = "./policies"
 }
+
+module "aws" {
+    source = "./aws"
+    url = var.vault_url
+    ip = var.ip
+}
