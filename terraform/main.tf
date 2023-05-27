@@ -25,6 +25,10 @@ module "Wale" {
 module "policies" {
     source = "./policies"
 }
+module "OIDC_provider" {
+    source = "./OIDC Provider"
+    aws_Group_id = vault_identity_group.aws_access.id
+}
 
 module "aws" {
     source = "./aws"

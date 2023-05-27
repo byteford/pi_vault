@@ -19,3 +19,14 @@ resource "vault_identity_group" "read_only" {
   }
   member_entity_ids = [module.James.entity_id, module.Wale.entity_id]
 }
+
+resource "vault_identity_group" "aws_access" {
+  name     = "aws_access"
+  type     = "internal"
+  policies = []
+
+  metadata = {
+    version = "2"
+  }
+  member_entity_ids = [module.James.entity_id]
+}
