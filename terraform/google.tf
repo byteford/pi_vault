@@ -15,5 +15,5 @@ resource "vault_jwt_auth_backend_role" "google" {
 
   user_claim            = "sub"
   role_type             = "oidc"
-  allowed_redirect_uris = ["http://localhost:8200/ui/vault/auth/oidc/oidc/callback,http://localhost:8250/oidc/callback"]
+  allowed_redirect_uris = ["https://${var.vault_url}:8200/ui/vault/auth/google/oidc/callback,http://localhost:8250/oidc/callback"]
 }
