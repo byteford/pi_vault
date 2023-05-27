@@ -23,5 +23,5 @@ module "policies" {
 module "aws" {
     source = "./aws"
     url = var.vault_url
-    ip = var.ip
+    ip = var.vault_ip
 }

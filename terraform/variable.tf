@@ -3,7 +3,7 @@ variable "vault_url" {
     description = "url for the vault server"
 }
 
-variable "ip" {
+variable "vault_ip" {
     type = string
     description = "ip of the vault server"
 }

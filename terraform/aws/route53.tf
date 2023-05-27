@@ -1,5 +1,11 @@
+locals {
+  site_domain_name_parts = split(".", var.url)
+  site_subdomain = local.site_domain_name_parts[0]
+  parent_domain = join(".", slice(local.site_domain_name_parts, 1, length(local.site_domain_name_parts)))
+
+}
 data "aws_route53_zone" "zone" {
-  name         = join(".",split(".",var.url)[-1])
+  name         = local.parent_domain
 }
 resource "aws_route53_record" "cname" {
   zone_id = data.aws_route53_zone.zone.zone_id
