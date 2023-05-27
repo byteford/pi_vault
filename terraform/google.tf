@@ -6,6 +6,15 @@ resource "vault_jwt_auth_backend" "google" {
     oidc_client_id      = var.google_client_id
     oidc_client_secret  = var.google_secret
     default_role        = "default"
+    tune {
+        listing_visibility = "unauth"
+    }
+    provider_config = {
+        provider = "gsuite"
+        fetch_groups = true
+        fetch_user_info = true
+        groups_recurse_max_depth = 1
+    }
 }
 
 resource "vault_jwt_auth_backend_role" "google" {
