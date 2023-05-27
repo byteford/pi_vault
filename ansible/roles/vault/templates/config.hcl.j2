@@ -9,7 +9,7 @@ storage "dynamodb" {
 
 listener "tcp" {
   address = "0.0.0.0:8200"
-  tls_cert_file = "/etc/letsencrypt/live/{{ vault_api_addr }}/cert.pem"
+  tls_cert_file = "/etc/letsencrypt/live/{{ vault_api_addr }}/fullchain.pem"
   tls_key_file =  "/etc/letsencrypt/live/{{ vault_api_addr }}/privkey.pem"
 }
 

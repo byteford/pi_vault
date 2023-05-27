@@ -75,5 +75,4 @@
       owner: vault
       group: vault
     with_items:
-      - /etc/letsencrypt/live/{{ vault_api_addr }}/cert.pem
       - /etc/letsencrypt/live/{{ vault_api_addr }}/privkey.pem

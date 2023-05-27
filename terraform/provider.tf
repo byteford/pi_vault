@@ -1,6 +1,5 @@
 provider "vault" {
-    address = "https://${var.vault_ip}:8200"#"http://${var.vault_url}:8200"
-    skip_tls_verify = true
+    address = "https://${var.vault_ip}:8200"
 }
 
 provider "aws" {
