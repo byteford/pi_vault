@@ -10,7 +10,7 @@ data "aws_route53_zone" "zone" {
 resource "aws_route53_record" "cname" {
   zone_id = data.aws_route53_zone.zone.zone_id
   name    = var.url #vault.something.com
-  type    = "CNAME"
+  type    = "A"
   ttl     = 300
   records = [var.ip] 
 }
