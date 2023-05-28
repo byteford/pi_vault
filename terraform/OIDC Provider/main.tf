@@ -5,7 +5,7 @@ resource "vault_identity_oidc_assignment" "aws" {
 
 resource "vault_identity_oidc_scope" "scope" {
   name        = "groups"
-  template    = "{\"groups\":{{identity.entity.groups.names},\"username\":{{identity.entity.name}}}}"
+  template    = "{\"groups\":{{identity.entity.groups.names}},\"username\":{{identity.entity.name}}}"
   description = "Vault OIDC Groups Scope"
 }
 
