@@ -1,5 +1,5 @@
 provider "vault" {
-    address = "https://${var.vault_ip}:8200"
+    address = "https://${var.vault_url}:8200"
 }
 
 provider "aws" {
