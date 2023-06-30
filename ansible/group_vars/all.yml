@@ -1,2 +1,4 @@
 ---
 vault_api_addr: vault.devcastops.com
+
+vault_user_name: vault

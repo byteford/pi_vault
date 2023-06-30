@@ -22,13 +22,14 @@
     - keys
     - archive
 
+  - name: update apt
+    apt:
+      update_cache: true
+
   - name: ensure snapd
     package:
       name: snap
 
-  - name: ensure nginx
-    package:
-      name: nginx
   
   - name: ensure certbot
     community.general.snap:

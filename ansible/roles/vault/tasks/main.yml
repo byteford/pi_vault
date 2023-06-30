@@ -24,20 +24,20 @@
     ansible.builtin.file:
       path: /etc/vault.d
       state: directory
-      owner: vault
-      group: vault
+      owner: "{{vault_user_name}}"
+      group: "{{vault_user_name}}"
       mode: 0744
 
   - name: vault config.hcl
     ansible.builtin.template:
       src: ./config.hcl.j2
       dest: /etc/vault.d/config.hcl
-      owner: vault
-      group: vault
+      owner: "{{vault_user_name}}"
+      group: "{{vault_user_name}}"
       mode: 0744
 
   - name: vault.service
-    ansible.builtin.copy:
+    ansible.builtin.template:
       src: vault.service
       dest: /etc/systemd/system/vault.service
 

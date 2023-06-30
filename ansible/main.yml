@@ -6,8 +6,21 @@
     - name: ansible_password
       prompt: what is the password?
       private: true
+    - name: aws_access_key_id
+      prompt: aws_access_key
+      private: true
+      default: ""
+    - name: aws_secret_access_key
+      prompt: aws_secret_access_key
+      private: true
+      default: ""
+    - name: aws_region
+      prompt: aws_region
+      private: false
+      default: "eu-west-2"  
   become: true
   roles:
     - make_users
     - tls
+    - aws_auth
     - vault

@@ -1,0 +1,21 @@
+---
+
+  - name: ensure aws creds dir
+    file:
+      path: "/home/{{vault_user_name}}/.aws"
+      state: directory
+      owner: "{{vault_user_name}}"
+      group: "{{vault_user_name}}"
+      mode: 0700
+  
+  - name: load templates
+    template:
+      src: "{{item}}"
+      dest: "/home/{{vault_user_name}}/.aws/{{(item | split('.'))[0]}}"
+      mode: 0700
+      owner: "{{vault_user_name}}"
+      group: "{{vault_user_name}}" 
+    with_items: 
+      - config.j2
+      - credentials.j2
+    when: aws_access_key_id != ""

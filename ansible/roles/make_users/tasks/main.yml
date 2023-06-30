@@ -1,9 +1,9 @@
   - name: ensure group exsists
     ansible.builtin.group:
-      name: vault
+      name: "{{vault_user_name}}"
       state: present
 
   - name: ensure user exsists
     ansible.builtin.user:
-      name: vault
-      group: vault
+      name: "{{vault_user_name}}"
+      group: "{{vault_user_name}}"

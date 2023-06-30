@@ -1,0 +1,14 @@
+[Unit]
+Description="HashiCorp Vault - A tool for managing secrets" Documentation=https://www.vaultproject.io/docs/
+Requires=network-online.target
+After=network-online.target ConditionFileNotEmpty=/etc/vault.d/config.hcl StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+User={{vault_user_name}}
+Group={{vault_user_name}}
+ExecStart=/usr/local/bin/vault server -config=/etc/vault.d/config.hcl 
+LimitMEMLOCK=infinity
+
+[Install]
+WantedBy=multi-user.target
